@@ -1,7 +1,7 @@
 # Проект «Киноман»
 
-* Студент: [Игорь Гаев](https://up.htmlacademy.ru/ecmascript/16/user/1290009).
-* Наставник: `Неизвестно`.
+* Студент: [Игорь Гаев](https://htmlacademy.ru/profile/id1290009).
+* Наставник: [Артём Рудов](https://htmlacademy.ru/profile/artrudov).
 
 ---
 
