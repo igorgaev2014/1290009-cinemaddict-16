@@ -6,7 +6,8 @@ import { createFilmCardTemplate } from './view/film-card-view.js';
 import { createShowMoreButtonTemplate } from './view/show-more-button-view.js';
 import { createFilmsCountTemplate } from './view/films-count-view.js';
 import { createPopupTemplate } from './view/popup-view.js';
-import { render, RenderPosition } from './render.js';
+import { render } from './render.js';
+import { RenderPosition } from './consts.js';
 import { TASK_COUNT } from './consts.js';
 
 const siteHeaderElement = document.querySelector('.header');

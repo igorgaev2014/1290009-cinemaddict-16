@@ -5,5 +5,4 @@ export const RenderPosition = {
   AFTER_END: 'afterend',
 };
 
-
 export const TASK_COUNT = 5;
