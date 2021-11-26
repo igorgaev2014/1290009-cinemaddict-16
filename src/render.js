@@ -1,10 +1,5 @@
-export const RenderPosition = {
-  BEFOREBEGIN: 'beforebegin',
-  AFTERBEGIN: 'afterbegin',
-  BEFOREEND: 'beforeend',
-  AFTEREND: 'afterend',
-};
+import { RenderPosition } from './consts.js';
 
-export const renderTemplate = (container, template, place) => {
+export const render = (container, template, place = RenderPosition.BEFORE_END) => {
   container.insertAdjacentHTML(place, template);
 };
