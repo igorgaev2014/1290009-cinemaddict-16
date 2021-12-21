@@ -5,6 +5,11 @@ export const RenderPosition = {
   AFTER_END: 'afterend',
 };
 
+export const DateFormat = {
+  MEDIUM: 'D MMMM YYYY',
+  LONG: 'YYYY/MM/DD HH:MM',
+};
+
 export const MOVIE_COUNT = 16;
 export const MOVIE_COUNT_PER_STEP = 5;
 export const COMMENT_COUNT = 5;

@@ -1,13 +1,13 @@
-const createNavigationItemTemplate = (filter) => {
-  const {name, count} = filter;
-
-  return `<a href="#${name}" class="main-navigation__item">${name}
-  <span class="main-navigation__item-count">${count}</span></a>`;
-};
+const createNavigationItemTemplate = ({name, count}) => (
+  `<a href="#${name}" class="main-navigation__item">
+    ${name}
+    <span class="main-navigation__item-count">${count}</span>
+  </a>`
+);
 
 export const createNavigationTemplate = (filterItems) => {
   const filterItemsTemplate = filterItems
-    .map((filter, index) => createNavigationItemTemplate(filter, index === 0))
+    .map((filter) => createNavigationItemTemplate(filter))
     .join('');
 
   return `<nav class="main-navigation">

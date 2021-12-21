@@ -1,9 +1,30 @@
 import dayjs from 'dayjs';
+import { DateFormat } from '../consts.js';
+
+const createCommentItemTemplate = ({author, comment, date, emotion}) => {
+  const commentDate = dayjs(date).format(DateFormat.LONG);
+
+  return (
+    `<li class="film-details__comment">
+      <span class="film-details__comment-emoji">
+        <img src="./images/emoji/${emotion}.png" width="55" height="55" alt="emoji-${emotion}">
+      </span>
+      <div>
+        <p class="film-details__comment-text">${comment}</p>
+        <p class="film-details__comment-info">
+          <span class="film-details__comment-author">${author}</span>
+          <span class="film-details__comment-day">${commentDate}</span>
+          <button class="film-details__comment-delete">Delete</button>
+        </p>
+      </div>
+    </li>`
+  );
+};
 
 export const createPopupTemplate = (movie) => {
   const {title, alternativeTitle, totalRating, director, actors, ageRating, writers, description, poster, release, runtime, userDetails, genre, comments} = movie;
 
-  const releaseDate = dayjs(release.date).format('D MMMM YYYY');
+  const releaseDate = dayjs(release.date).format(DateFormat.MEDIUM);
 
   const watchedClassName = userDetails.isAlreadyWatched
     ? 'film-details__control-button--active film-details__control-button--watched'
@@ -17,28 +38,8 @@ export const createPopupTemplate = (movie) => {
     ? 'film-details__control-button--active film-details__control-button--watchlist'
     : '';
 
-  const createCommentItemTemplate = (commentItems) => {
-    const {author, comment, date, emotion} = commentItems;
-    const commentDate = dayjs(date).format('YYYY/MM/DD HH:MM');
-
-    return (
-      `<li class="film-details__comment">
-          <span class="film-details__comment-emoji">
-            <img src="./images/emoji/${emotion}.png" width="55" height="55" alt="emoji-${emotion}">
-              </span>
-              <div>
-                <p class="film-details__comment-text">${comment}</p>
-                <p class="film-details__comment-info">
-                  <span class="film-details__comment-author">${author}</span>
-                  <span class="film-details__comment-day">${commentDate}</span>
-                  <button class="film-details__comment-delete">Delete</button>
-                </p>
-              </div>
-      </li>`);
-  };
-
   const commentItemsTemplate = comments
-    .map((comment, index) => createCommentItemTemplate(comment, index === 0))
+    .map((comment) => createCommentItemTemplate(comment))
     .join('');
 
   return `<section class="film-details">
