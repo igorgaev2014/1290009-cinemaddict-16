@@ -1,4 +1,5 @@
 import dayjs from 'dayjs';
+import { createElement } from '../render.js';
 import { DateFormat } from '../consts.js';
 
 const createCommentItemTemplate = ({author, comment, date, emotion}) => {
@@ -21,8 +22,8 @@ const createCommentItemTemplate = ({author, comment, date, emotion}) => {
   );
 };
 
-export const createPopupTemplate = (movie) => {
-  const {title, alternativeTitle, totalRating, director, actors, ageRating, writers, description, poster, release, runtime, userDetails, genre, comments} = movie;
+const createPopupTemplate = (film) => {
+  const {title, alternativeTitle, totalRating, director, actors, ageRating, writers, description, poster, release, runtime, userDetails, genre, comments} = film;
 
   const releaseDate = dayjs(release.date).format(DateFormat.MEDIUM);
 
@@ -39,7 +40,7 @@ export const createPopupTemplate = (movie) => {
     : '';
 
   const commentItemsTemplate = comments
-    .map((comment) => createCommentItemTemplate(comment))
+    .map(createCommentItemTemplate)
     .join('');
 
   return `<section class="film-details">
@@ -156,3 +157,28 @@ export const createPopupTemplate = (movie) => {
     </form>
   </section>`;
 };
+
+export default class PopupView {
+  #element = null;
+  #film = null;
+
+  constructor(film) {
+    this.#film = film;
+  }
+
+  get element() {
+    if (!this.#element) {
+      this.#element = createElement(this.template);
+    }
+
+    return this.#element;
+  }
+
+  get template() {
+    return createPopupTemplate(this.#film);
+  }
+
+  removeElement() {
+    this.#element = null;
+  }
+}
