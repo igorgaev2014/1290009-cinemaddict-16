@@ -10,8 +10,8 @@ export const DateFormat = {
   LONG: 'YYYY/MM/DD HH:MM',
 };
 
-export const MOVIE_COUNT = 16;
-export const MOVIE_COUNT_PER_STEP = 5;
+export const FILM_COUNT = 16;
+export const FILM_COUNT_PER_STEP = 5;
 export const COMMENT_COUNT = 5;
 
 export const titles = [

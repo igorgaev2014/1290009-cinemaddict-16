@@ -2,7 +2,7 @@ import { getRandomInteger, generateData, generateDate } from '../utils.js';
 import { titles, posters, descriptions, alternativeTitles, directors, writers, actors, countries, runtimes, genres, watchingDates } from '../consts.js';
 import { comments } from '../main.js';
 
-export const generateMovie = () => ({
+export const generateFilm = () => ({
   id: getRandomInteger(0, 100),
   comments: [...comments],
   title: generateData(titles),
