@@ -2,6 +2,7 @@ import ProfileRatingView from './view/profile-rating-view.js';
 import NavigationView from './view/navigation-view.js';
 import SortView from './view/sort-view.js';
 import FilmListView from './view/film-list-view.js';
+import NoFilmView from './view/no-film-view.js';
 import FilmCardView from './view/film-card-view.js';
 import ShowMoreButtonView from './view/show-more-button-view.js';
 import FilmCountView from './view/film-count-view.js';
@@ -36,12 +37,22 @@ const renderFilm = (filmListElement, film) => {
     document.body.classList.remove('hide-overflow');
   };
 
+  const onEscKeyDown = (evt) => {
+    if (evt.key === 'Escape' || evt.key === 'Esc') {
+      evt.preventDefault();
+      closePopup();
+      document.removeEventListener('keydown', onEscKeyDown);
+    }
+  };
+
   filmCardComponent.element.querySelector('.film-card__link').addEventListener('click', () => {
     openPopup();
+    document.addEventListener('keydown', onEscKeyDown);
   });
 
   popupComponent.element.querySelector('.film-details__close-btn').addEventListener('click', () => {
     closePopup();
+    document.removeEventListener('keydown', onEscKeyDown);
   });
 
   render(filmListElement, filmCardComponent.element);
@@ -51,7 +62,13 @@ const filmListComponent = new FilmListView();
 
 render(siteHeaderElement, new ProfileRatingView().element);
 render(siteMainElement, new NavigationView(filters).element);
-render(siteMainElement, new SortView().element);
+
+if (films.length === 0) {
+  render(siteMainElement, new NoFilmView().element);
+} else {
+  render(siteMainElement, new SortView().element);
+}
+
 render(siteMainElement, filmListComponent.element);
 render(siteFooterStatsElement, new FilmCountView().element);
 
