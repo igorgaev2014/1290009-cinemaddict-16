@@ -1,4 +1,4 @@
-import { generateData, getRandomInteger, generateDate } from '../utils.js';
+import { generateData, getRandomInteger, generateDate } from '../utils/common.js';
 import { commentAuthors, commentDescriptions, commentEmotions } from '../consts.js';
 
 export const generateComment = () => ({
