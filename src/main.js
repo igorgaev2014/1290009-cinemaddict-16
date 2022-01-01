@@ -8,7 +8,7 @@ import ShowMoreButtonView from './view/show-more-button-view.js';
 import FilmCountView from './view/film-count-view.js';
 import PopupView from './view/popup-view.js';
 
-import { render } from './render.js';
+import { render, remove } from './utils/render.js';
 import { FILM_COUNT, FILM_COUNT_PER_STEP, COMMENT_COUNT, RenderPosition } from './consts.js';
 import { generateFilm } from './mock/film.js';
 import { generateFilter } from './mock/filter.js';
@@ -45,32 +45,32 @@ const renderFilm = (filmListElement, film) => {
     }
   };
 
-  filmCardComponent.element.querySelector('.film-card__link').addEventListener('click', () => {
+  filmCardComponent.setOpenClickHandler(() => {
     openPopup();
     document.addEventListener('keydown', onEscKeyDown);
   });
 
-  popupComponent.element.querySelector('.film-details__close-btn').addEventListener('click', () => {
+  popupComponent.setCloseClickHandler(() => {
     closePopup();
     document.removeEventListener('keydown', onEscKeyDown);
   });
 
-  render(filmListElement, filmCardComponent.element);
+  render(filmListElement, filmCardComponent);
 };
 
 const filmListComponent = new FilmListView();
 
-render(siteHeaderElement, new ProfileRatingView().element);
-render(siteMainElement, new NavigationView(filters).element);
+render(siteHeaderElement, new ProfileRatingView());
+render(siteMainElement, new NavigationView(filters));
 
 if (films.length === 0) {
-  render(siteMainElement, new NoFilmView().element);
+  render(siteMainElement, new NoFilmView());
 } else {
-  render(siteMainElement, new SortView().element);
+  render(siteMainElement, new SortView());
 }
 
-render(siteMainElement, filmListComponent.element);
-render(siteFooterStatsElement, new FilmCountView().element);
+render(siteMainElement, filmListComponent);
+render(siteFooterStatsElement, new FilmCountView());
 
 for (let i = 0; i < Math.min(films.length, FILM_COUNT_PER_STEP); i++) {
   renderFilm(filmListComponent.element, films[i]);
@@ -81,10 +81,9 @@ if (films.length > FILM_COUNT_PER_STEP) {
 
   const showMoreButtonComponent = new ShowMoreButtonView();
 
-  render(filmListComponent.element, showMoreButtonComponent.element, RenderPosition.AFTER_END);
+  render(filmListComponent, showMoreButtonComponent, RenderPosition.AFTER_END);
 
-  showMoreButtonComponent.element.addEventListener('click', (evt) => {
-    evt.preventDefault();
+  showMoreButtonComponent.setClickHandler(() => {
     films
       .slice(renderedFilmCount, renderedFilmCount + FILM_COUNT_PER_STEP)
       .forEach((film) => renderFilm(filmListComponent.element, film));
@@ -92,8 +91,7 @@ if (films.length > FILM_COUNT_PER_STEP) {
     renderedFilmCount += FILM_COUNT_PER_STEP;
 
     if (renderedFilmCount >= films.length) {
-      showMoreButtonComponent.element.remove();
-      showMoreButtonComponent.removeElement();
+      remove(showMoreButtonComponent);
     }
   });
 }

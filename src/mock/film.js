@@ -1,4 +1,4 @@
-import { getRandomInteger, generateData, generateDate } from '../utils.js';
+import { getRandomInteger, generateData, generateDate } from '../utils/common.js';
 import { titles, posters, descriptions, alternativeTitles, directors, writers, actors, countries, runtimes, genres, watchingDates } from '../consts.js';
 import { comments } from '../main.js';
 
