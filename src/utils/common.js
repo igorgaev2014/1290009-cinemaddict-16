@@ -13,9 +13,22 @@ export const generateData = (data) => {
 };
 
 export const generateDate = () => {
-  const maxDaysGap = 7;
-  const daysGap = getRandomInteger(-maxDaysGap, maxDaysGap);
+  const maxDaysGap = 777;
+  const daysGap = getRandomInteger(-maxDaysGap, 0);
 
   return dayjs().add(daysGap, 'day').toDate();
 };
 
+export const updateItem = (items, update) => {
+  const index = items.findIndex((item) => item.id === update.id);
+
+  if (index === -1) {
+    return items;
+  }
+
+  return [
+    ...items.slice(0, index),
+    update,
+    ...items.slice(index + 1),
+  ];
+};

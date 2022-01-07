@@ -10,6 +10,17 @@ export const DateFormat = {
   LONG: 'YYYY/MM/DD HH:MM',
 };
 
+export const Mode = {
+  CARD: 'CARD',
+  POPUP: 'POPUP',
+};
+
+export const SortType = {
+  DEFAULT: 'default',
+  DATE: 'date',
+  RATING: 'rating',
+};
+
 export const FILM_COUNT = 16;
 export const FILM_COUNT_PER_STEP = 5;
 export const COMMENT_COUNT = 5;

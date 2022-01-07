@@ -1,9 +1,10 @@
 import { getRandomInteger, generateData, generateDate } from '../utils/common.js';
 import { titles, posters, descriptions, alternativeTitles, directors, writers, actors, countries, runtimes, genres, watchingDates } from '../consts.js';
 import { comments } from '../main.js';
+import { nanoid } from 'nanoid';
 
 export const generateFilm = () => ({
-  id: getRandomInteger(0, 100),
+  id: nanoid(),
   comments: [...comments],
   title: generateData(titles),
   alternativeTitle: generateData(alternativeTitles),
