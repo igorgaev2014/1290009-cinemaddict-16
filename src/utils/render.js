@@ -59,5 +59,5 @@ export const replace = (newElement, oldElement) => {
   parent.replaceChild(newChild, oldChild);
 };
 
-export const sortDate = (a, b) => dayjs(b.release.date).year() - dayjs(a.release.date).year();
+export const sortDate = (a, b) => dayjs(b.release.date) - dayjs(a.release.date);
 export const sortRating = (a, b) => b.totalRating - a.totalRating;

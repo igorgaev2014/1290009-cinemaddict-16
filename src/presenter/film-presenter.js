@@ -51,14 +51,6 @@ export default class FilmPresenter {
       replace(this.#popupComponent, prevPopupComponent);
     }
 
-    if (this.#filmListContainer.element.contains(prevFilmComponent.element)) {
-      replace(this.#filmComponent, prevFilmComponent);
-    }
-
-    if (this.#filmListContainer.element.contains(prevPopupComponent.element)) {
-      replace(this.#popupComponent, prevPopupComponent);
-    }
-
     remove(prevFilmComponent);
     remove(prevPopupComponent);
   }
@@ -105,14 +97,14 @@ export default class FilmPresenter {
   }
 
   #handleWatchlistClick = () => {
-    this.#changeData({...this.#film, userDetails: {isInWatchList: !this.#film.userDetails.isInWatchList}});
+    this.#changeData({...this.#film, 'userDetails': {...this.#film.userDetails, isInWatchList: !this.#film.userDetails.isInWatchList}});
   }
 
   #handleWatchedClick = () => {
-    this.#changeData({...this.#film, userDetails: {isAlreadyWatched: !this.#film.userDetails.isAlreadyWatched}});
+    this.#changeData({...this.#film, 'userDetails': {...this.#film.userDetails, isAlreadyWatched: !this.#film.userDetails.isAlreadyWatched}});
   }
 
   #handleFavoriteClick = () => {
-    this.#changeData({...this.#film, userDetails: {isFavorite: !this.#film.userDetails.isFavorite}});
+    this.#changeData({...this.#film, 'userDetails': {...this.#film.userDetails, isFavorite: !this.#film.userDetails.isFavorite}});
   }
 }

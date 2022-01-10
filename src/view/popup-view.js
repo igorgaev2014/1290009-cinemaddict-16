@@ -1,6 +1,5 @@
 import dayjs from 'dayjs';
 import AbstractView from './abstract-view.js';
-//import FilmCardView from './film-card-view.js';
 import { DateFormat } from '../consts.js';
 
 const createCommentItemTemplate = ({author, comment, date, emotion}) => {
