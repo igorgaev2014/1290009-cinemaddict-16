@@ -38,7 +38,7 @@ export default class FilmPresenter {
     this.#popupComponent.setWatchedClickHandler(this.#handleWatchedClick);
     this.#popupComponent.setFavoriteClickHandler(this.#handleFavoriteClick);
 
-    if (prevFilmComponent === null) {
+    if (prevFilmComponent === null && prevPopupComponent === null) {
       render(this.#filmListContainer, this.#filmComponent);
       return;
     }
@@ -48,6 +48,7 @@ export default class FilmPresenter {
     }
 
     if (this.#mode === Mode.POPUP) {
+      replace(this.#filmComponent, prevFilmComponent);
       replace(this.#popupComponent, prevPopupComponent);
     }
 
