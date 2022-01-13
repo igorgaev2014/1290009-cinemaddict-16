@@ -130,7 +130,7 @@ export const commentDescriptions = [
   'Not intereting'
 ];
 
-export const EMOTIONS = [
+export const commentEmotions = [
   'smile',
   'sleeping',
   'puke',

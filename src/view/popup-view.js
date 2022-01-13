@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import SmartView from './smart-view.js';
 import { DateFormat } from '../consts.js';
-import { EMOTIONS } from '../consts.js';
+import { commentEmotions } from '../consts.js';
 
 const createCommentItemTemplate = ({author, comment, date, emotion}) => {
   const commentDate = dayjs(date).format(DateFormat.LONG);
@@ -24,7 +24,7 @@ const createCommentItemTemplate = ({author, comment, date, emotion}) => {
 };
 
 const createEmotionListTemplate = () => (
-  EMOTIONS.map((emotion) => `<input
+  commentEmotions.map((emotion) => `<input
     class="film-details__emoji-item visually-hidden"
     name="comment-emoji"
     type="radio"
