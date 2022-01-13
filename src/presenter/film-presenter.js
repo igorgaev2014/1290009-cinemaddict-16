@@ -38,7 +38,7 @@ export default class FilmPresenter {
     this.#popupComponent.setWatchedClickHandler(this.#handleWatchedClick);
     this.#popupComponent.setFavoriteClickHandler(this.#handleFavoriteClick);
 
-    if (prevFilmComponent === null && prevPopupComponent === null) {
+    if (prevFilmComponent === null) {
       render(this.#filmListContainer, this.#filmComponent);
       return;
     }
@@ -63,6 +63,7 @@ export default class FilmPresenter {
 
   resetView = () => {
     if (this.#mode !== Mode.CARD) {
+      this.#popupComponent.reset(this.#film);
       this.#closePopup();
     }
   }
@@ -85,6 +86,7 @@ export default class FilmPresenter {
   #escKeyDownHandler = (evt) => {
     if (evt.key === 'Escape' || evt.key === 'Esc') {
       evt.preventDefault();
+      this.#popupComponent.reset(this.#film);
       this.#closePopup();
     }
   }
