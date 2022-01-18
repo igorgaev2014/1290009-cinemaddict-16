@@ -2,7 +2,7 @@ import dayjs from 'dayjs';
 import AbstractView from './abstract-view.js';
 
 const createFilmCardTemplate = (film) => {
-  const {title, totalRating, genre, release, poster, description, runtime, userDetails} = film;
+  const {title, totalRating, genre, release, poster, description, runtime, userDetails, comments} = film;
   const {isInWatchList, isAlreadyWatched, isFavorite} = userDetails;
   const date = dayjs(release.date).year();
 
@@ -34,7 +34,7 @@ const createFilmCardTemplate = (film) => {
         class="film-card__poster"
       >
       <p class="film-card__description">${description}</p>
-      <span class="film-card__comments">0 comments</span>
+      <span class="film-card__comments">${comments.length} comments</span>
     </a>
     <div class="film-card__controls">
       <button class="film-card__controls-item ${inWatchListClassName}" type="button">Add to watchlist</button>
@@ -97,4 +97,3 @@ export default class FilmCardView extends AbstractView {
     this._callback.favoriteClick();
   }
 }
-
